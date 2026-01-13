@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mon espace - Hormur</title>
+    <title>Hormur - Maquette UX Mon espace & Messages</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -17,14 +17,18 @@
             --green-bg: #DCFCE7;
             --yellow: #EAB308;
             --yellow-bg: #FEF9C3;
+            --red: #EF4444;
+            --red-light: #FEE2E2;
             --bg-page: #FAF9F7;
             --bg-white: #FFFFFF;
             --gray-100: #F5F4F2;
             --gray-200: #E8E6E3;
+            --gray-300: #D1D5DB;
             --gray-400: #9CA3AF;
             --gray-500: #6B7280;
             --gray-700: #374151;
             --shadow-card: 0 1px 3px rgba(0,0,0,0.08), 0 4px 12px rgba(0,0,0,0.05);
+            --shadow-dropdown: 0 4px 16px rgba(0,0,0,0.12);
             --radius: 8px;
         }
 
@@ -119,7 +123,7 @@
 
         /* ==================== MAIN ==================== */
         .main {
-            max-width: 900px;
+            max-width: 960px;
             margin: 0 auto;
             padding: 40px 24px 80px;
         }
@@ -139,11 +143,51 @@
             max-width: 500px;
         }
 
-        /* ==================== TOGGLE ==================== */
+        /* ==================== TAB NAV ==================== */
+        .tab-nav {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 40px;
+            border-bottom: 1px solid var(--gray-200);
+            padding-bottom: 0;
+        }
+
+        .tab-btn {
+            padding: 12px 20px;
+            border: none;
+            background: transparent;
+            color: var(--gray-500);
+            font-size: 14px;
+            font-weight: 600;
+            font-family: inherit;
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+            margin-bottom: -1px;
+            transition: all 0.2s;
+        }
+
+        .tab-btn:hover {
+            color: var(--purple-dark);
+        }
+
+        .tab-btn.active {
+            color: var(--coral);
+            border-bottom-color: var(--coral);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* ==================== VERSION TOGGLE ==================== */
         .toggle-container {
             display: flex;
             justify-content: center;
-            margin-bottom: 40px;
+            margin-bottom: 32px;
         }
 
         .toggle-group {
@@ -200,7 +244,7 @@
             }
         }
 
-        /* ==================== EVENT CARD - VERSION ACTUELLE ==================== */
+        /* ==================== EVENT CARD ==================== */
         .event-card {
             background: var(--bg-white);
             border-radius: var(--radius);
@@ -212,7 +256,7 @@
             position: relative;
             aspect-ratio: 4/3;
             overflow: hidden;
-            background: var(--gray-100);
+            background: #1a1625;
         }
 
         .card-image img {
@@ -254,7 +298,7 @@
             color: var(--coral);
             font-size: 14px;
             font-weight: 700;
-            background: rgba(255,255,255,0.9);
+            background: rgba(255,255,255,0.95);
             padding: 2px 8px;
             border-radius: 4px;
         }
@@ -286,14 +330,14 @@
             color: var(--green);
         }
 
-        .status-badge.pending {
-            background: var(--yellow-bg);
-            color: var(--yellow);
-        }
-
         .status-badge svg {
             width: 14px;
             height: 14px;
+        }
+
+        /* Menu gérer */
+        .manage-wrapper {
+            position: relative;
         }
 
         .btn-manage {
@@ -319,6 +363,74 @@
         .btn-manage svg {
             width: 12px;
             height: 12px;
+            transition: transform 0.2s;
+        }
+
+        .btn-manage.open svg {
+            transform: rotate(180deg);
+        }
+
+        /* Dropdown menu */
+        .dropdown-menu {
+            position: absolute;
+            top: calc(100% + 4px);
+            right: 0;
+            background: var(--bg-white);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-dropdown);
+            min-width: 200px;
+            z-index: 50;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-8px);
+            transition: all 0.2s;
+        }
+
+        .dropdown-menu.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown-menu a, .dropdown-menu button {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            width: 100%;
+            padding: 10px 14px;
+            text-decoration: none;
+            color: var(--purple-dark);
+            font-size: 13px;
+            font-weight: 500;
+            border: none;
+            background: none;
+            text-align: left;
+            cursor: pointer;
+            transition: background 0.15s;
+        }
+
+        .dropdown-menu a:hover, .dropdown-menu button:hover {
+            background: var(--gray-100);
+        }
+
+        .dropdown-menu a svg, .dropdown-menu button svg {
+            width: 16px;
+            height: 16px;
+            color: var(--gray-400);
+        }
+
+        .dropdown-menu .danger {
+            color: var(--red);
+        }
+
+        .dropdown-menu .danger svg {
+            color: var(--red);
+        }
+
+        .dropdown-divider {
+            height: 1px;
+            background: var(--gray-200);
+            margin: 4px 0;
         }
 
         /* Title */
@@ -491,6 +603,106 @@
             display: block;
         }
 
+        /* ==================== MESSAGES PAGE ==================== */
+        .messages-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .message-item {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 14px 16px;
+            background: var(--bg-white);
+            border-radius: var(--radius);
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.15s;
+            position: relative;
+        }
+
+        .message-item:hover {
+            box-shadow: var(--shadow-card);
+            transform: translateY(-1px);
+        }
+
+        .message-item.unread {
+            background: #FEF7F6;
+            border-left: 3px solid var(--coral);
+        }
+
+        .message-avatar {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--gray-200);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            overflow: hidden;
+        }
+
+        .message-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .message-avatar svg {
+            width: 20px;
+            height: 20px;
+            color: var(--gray-400);
+        }
+
+        .message-content {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .message-header {
+            display: flex;
+            align-items: baseline;
+            gap: 8px;
+            margin-bottom: 2px;
+        }
+
+        .message-name {
+            font-weight: 700;
+            font-size: 14px;
+            color: var(--purple-dark);
+        }
+
+        .message-artist-name {
+            font-size: 12px;
+            color: var(--gray-400);
+            font-style: italic;
+        }
+
+        .message-project {
+            font-size: 13px;
+            color: var(--gray-500);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .message-location {
+            font-size: 12px;
+            color: var(--gray-400);
+            margin-top: 2px;
+        }
+
+        .unread-dot {
+            width: 10px;
+            height: 10px;
+            background: var(--coral);
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
         /* ==================== COMPARISON SECTION ==================== */
         .comparison-section {
             margin-top: 60px;
@@ -599,8 +811,60 @@
         }
 
         .benefits-box li::before {
-            content: "•";
+            content: "✓";
             margin-right: 8px;
+            font-weight: 700;
+        }
+
+        /* Help section */
+        .help-section {
+            margin-top: 40px;
+            padding-top: 24px;
+            border-top: 1px solid var(--gray-200);
+        }
+
+        .help-section p {
+            font-size: 14px;
+            color: var(--gray-500);
+            margin-bottom: 12px;
+        }
+
+        .btn-contact {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background: var(--coral);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .btn-contact:hover {
+            background: var(--coral-hover);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header {
+                padding: 12px 16px;
+            }
+            
+            .nav {
+                display: none;
+            }
+            
+            .main {
+                padding: 24px 16px 60px;
+            }
+            
+            .page-title {
+                font-size: 26px;
+            }
         }
     </style>
 </head>
@@ -630,399 +894,780 @@
 
     <!-- ==================== MAIN ==================== -->
     <main class="main">
-        <h1 class="page-title">Mon espace</h1>
-        <p class="page-description">Retrouvez vos projets, lieux, propositions, évènements et réservations en cours ou à venir.</p>
+        <h1 class="page-title">Maquette UX Hormur</h1>
+        <p class="page-description">Propositions d'améliorations pour "Mon espace" et la page "Messages"</p>
 
-        <!-- Toggle -->
-        <div class="toggle-container">
-            <div class="toggle-group">
-                <button class="toggle-btn active" id="btn-improved" onclick="showView('improved')">✨ Version améliorée</button>
-                <button class="toggle-btn" id="btn-current" onclick="showView('current')">Version actuelle</button>
-            </div>
+        <!-- Tab Navigation -->
+        <div class="tab-nav">
+            <button class="tab-btn active" onclick="showTab('mon-espace')">📋 Mon espace</button>
+            <button class="tab-btn" onclick="showTab('messages')">💬 Messages</button>
+            <button class="tab-btn" onclick="showTab('recap')">📊 Récapitulatif</button>
         </div>
 
-        <!-- ==================== VERSION AMÉLIORÉE ==================== -->
-        <div id="view-improved" class="view-container active">
-            <h2 class="section-title">À venir</h2>
+        <!-- ==================== TAB: MON ESPACE ==================== -->
+        <div id="tab-mon-espace" class="tab-content active">
             
-            <div class="events-grid">
-                <!-- Card 1 - Améliorée -->
-                <article class="event-card">
-                    <div class="card-image">
-                        <img src="https://images.unsplash.com/photo-1514306191717-452ec28c7814?w=600&h=450&fit=crop" alt="Comédie humoristique">
-                        <span class="card-date">17/05</span>
-                        <span class="card-type">Billetterie</span>
-                        <span class="card-price">15€</span>
-                    </div>
-                    <div class="card-body">
-                        <div class="card-status-row">
-                            <span class="status-badge published">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
-                                    <polyline points="20 6 9 17 4 12"></polyline>
-                                </svg>
-                                Publié
-                            </span>
-                            <button class="btn-manage">
-                                gérer
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <polyline points="6 9 12 15 18 9"></polyline>
-                                </svg>
-                            </button>
-                        </div>
-
-                        <h3 class="card-title">Comédie humoristique chez l'habitant</h3>
-
-                        <div class="card-meta">
-                            <div class="meta-item">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
-                                    <circle cx="12" cy="7" r="4"/>
-                                </svg>
-                                Amélie Abrieu chez THOMAS G.
-                            </div>
-                            <div class="meta-item">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
-                                    <circle cx="12" cy="10" r="3"/>
-                                </svg>
-                                Saint-Max (54)
-                            </div>
-                        </div>
-
-                        <!-- NOUVEAU : Stats -->
-                        <div class="stats-bar">
-                            <div class="stat-item">
-                                <div class="stat-icon views">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
-                                        <circle cx="12" cy="12" r="3"/>
-                                    </svg>
-                                </div>
-                                <div class="stat-content">
-                                    <span class="stat-value">9</span>
-                                    <span class="stat-label">vues</span>
-                                </div>
-                            </div>
-                            <div class="stat-item">
-                                <div class="stat-icon tickets">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <path d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"/>
-                                    </svg>
-                                </div>
-                                <div class="stat-content">
-                                    <span class="stat-value">0/20</span>
-                                    <span class="stat-label">places</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- NOUVEAU : Boutons d'action -->
-                        <div class="card-actions">
-                            <a href="#" class="action-btn primary">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
-                                    <circle cx="9" cy="9" r="2"/>
-                                    <path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/>
-                                </svg>
-                                Créer mes visuels
-                            </a>
-                            <a href="#" class="action-btn secondary">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
-                                    <circle cx="9" cy="7" r="4"/>
-                                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
-                                    <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
-                                </svg>
-                                Suivre mes inscrits
-                            </a>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- Card 2 - Améliorée -->
-                <article class="event-card">
-                    <div class="card-image">
-                        <img src="https://images.unsplash.com/photo-1594122230689-45899d9e6f69?w=600&h=450&fit=crop" alt="Spectacle marionnettes">
-                        <span class="card-date">15/03</span>
-                        <span class="card-type">Billetterie</span>
-                        <span class="card-price">10€</span>
-                    </div>
-                    <div class="card-body">
-                        <div class="card-status-row">
-                            <span class="status-badge published">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
-                                    <polyline points="20 6 9 17 4 12"></polyline>
-                                </svg>
-                                Publié
-                            </span>
-                            <button class="btn-manage">
-                                gérer
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <polyline points="6 9 12 15 18 9"></polyline>
-                                </svg>
-                            </button>
-                        </div>
-
-                        <h3 class="card-title">Fêtons le printemps ! Spectacle de marionnettes & atelier porte bonheur chez l'habitant</h3>
-
-                        <div class="card-meta">
-                            <div class="meta-item">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
-                                    <circle cx="12" cy="7" r="4"/>
-                                </svg>
-                                Emilie Boulangé chez THOMAS G.
-                            </div>
-                            <div class="meta-item">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
-                                    <circle cx="12" cy="10" r="3"/>
-                                </svg>
-                                Saint-Max (54)
-                            </div>
-                        </div>
-
-                        <!-- Stats -->
-                        <div class="stats-bar">
-                            <div class="stat-item">
-                                <div class="stat-icon views">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
-                                        <circle cx="12" cy="12" r="3"/>
-                                    </svg>
-                                </div>
-                                <div class="stat-content">
-                                    <span class="stat-value">23</span>
-                                    <span class="stat-label">vues</span>
-                                </div>
-                            </div>
-                            <div class="stat-item">
-                                <div class="stat-icon tickets">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <path d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"/>
-                                    </svg>
-                                </div>
-                                <div class="stat-content">
-                                    <span class="stat-value">8/15</span>
-                                    <span class="stat-label">places</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Boutons d'action -->
-                        <div class="card-actions">
-                            <a href="#" class="action-btn primary">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
-                                    <circle cx="9" cy="9" r="2"/>
-                                    <path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/>
-                                </svg>
-                                Créer mes visuels
-                            </a>
-                            <a href="#" class="action-btn secondary">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
-                                    <circle cx="9" cy="7" r="4"/>
-                                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
-                                    <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
-                                </svg>
-                                Suivre mes inscrits
-                            </a>
-                        </div>
-                    </div>
-                </article>
-            </div>
-        </div>
-
-        <!-- ==================== VERSION ACTUELLE ==================== -->
-        <div id="view-current" class="view-container">
-            <h2 class="section-title">À venir</h2>
-            
-            <div class="events-grid">
-                <!-- Card 1 - Actuelle -->
-                <article class="event-card">
-                    <div class="card-image">
-                        <img src="https://images.unsplash.com/photo-1514306191717-452ec28c7814?w=600&h=450&fit=crop" alt="Comédie humoristique">
-                        <span class="card-date">17/05</span>
-                        <span class="card-type">Billetterie</span>
-                        <span class="card-price">15€</span>
-                    </div>
-                    <div class="card-body">
-                        <div class="card-status-row">
-                            <span class="status-badge published">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
-                                    <polyline points="20 6 9 17 4 12"></polyline>
-                                </svg>
-                                Publié
-                            </span>
-                            <button class="btn-manage">
-                                gérer
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <polyline points="6 9 12 15 18 9"></polyline>
-                                </svg>
-                            </button>
-                        </div>
-
-                        <h3 class="card-title">Comédie humoristique chez l'habitant</h3>
-
-                        <div class="card-meta">
-                            <div class="meta-item">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
-                                    <circle cx="12" cy="7" r="4"/>
-                                </svg>
-                                Amélie Abrieu chez THOMAS G.
-                            </div>
-                            <div class="meta-item">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
-                                    <circle cx="12" cy="10" r="3"/>
-                                </svg>
-                                Saint-Max (54)
-                            </div>
-                        </div>
-
-                        <!-- Liens actuels -->
-                        <div class="card-links">
-                            <a href="#" class="card-link">Voir l'évènement</a>
-                            <a href="#" class="card-link">Gérer les réservations</a>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- Card 2 - Actuelle -->
-                <article class="event-card">
-                    <div class="card-image">
-                        <img src="https://images.unsplash.com/photo-1594122230689-45899d9e6f69?w=600&h=450&fit=crop" alt="Spectacle marionnettes">
-                        <span class="card-date">15/03</span>
-                        <span class="card-type">Billetterie</span>
-                        <span class="card-price">10€</span>
-                    </div>
-                    <div class="card-body">
-                        <div class="card-status-row">
-                            <span class="status-badge published">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
-                                    <polyline points="20 6 9 17 4 12"></polyline>
-                                </svg>
-                                Publié
-                            </span>
-                            <button class="btn-manage">
-                                gérer
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <polyline points="6 9 12 15 18 9"></polyline>
-                                </svg>
-                            </button>
-                        </div>
-
-                        <h3 class="card-title">Fêtons le printemps ! Spectacle de marionnettes & atelier porte bonheur chez l'habitant</h3>
-
-                        <div class="card-meta">
-                            <div class="meta-item">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
-                                    <circle cx="12" cy="7" r="4"/>
-                                </svg>
-                                Emilie Boulangé chez THOMAS G.
-                            </div>
-                            <div class="meta-item">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
-                                    <circle cx="12" cy="10" r="3"/>
-                                </svg>
-                                Saint-Max (54)
-                            </div>
-                        </div>
-
-                        <!-- Liens actuels -->
-                        <div class="card-links">
-                            <a href="#" class="card-link">Voir l'évènement</a>
-                            <a href="#" class="card-link">Gérer les réservations</a>
-                        </div>
-                    </div>
-                </article>
-            </div>
-        </div>
-
-        <!-- ==================== COMPARAISON ==================== -->
-        <section class="comparison-section">
-            <h2 class="comparison-title">Comparaison du wording</h2>
-            
-            <div class="comparison-grid">
-                <div class="comparison-card before">
-                    <h3>
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <circle cx="12" cy="12" r="10"/>
-                            <line x1="15" y1="9" x2="9" y2="15"/>
-                            <line x1="9" y1="9" x2="15" y2="15"/>
-                        </svg>
-                        Avant (actuel)
-                    </h3>
-                    <ul class="wording-list">
-                        <li><span class="wording-old">"Gérer les réservations"</span></li>
-                        <li><span class="wording-old">"Voir l'évènement"</span></li>
-                        <li><span class="wording-old">"Mes visuels"</span></li>
-                        <li><span class="wording-old">"Personnaliser et imprimer"</span></li>
-                        <li><span class="wording-old">Stats cachées (1 clic minimum)</span></li>
-                    </ul>
-                </div>
-
-                <div class="comparison-card after">
-                    <h3>
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
-                            <polyline points="22 4 12 14.01 9 11.01"/>
-                        </svg>
-                        Après (proposé)
-                    </h3>
-                    <ul class="wording-list">
-                        <li><span class="wording-new">"Suivre mes inscrits"</span></li>
-                        <li><span class="wording-new">"Voir la page" (via bouton gérer)</span></li>
-                        <li><span class="wording-new">"Créer mes visuels"</span></li>
-                        <li><span class="wording-new">"Personnaliser & partager"</span></li>
-                        <li><span class="wording-new">Stats visibles (0 clic)</span></li>
-                    </ul>
+            <!-- Toggle -->
+            <div class="toggle-container">
+                <div class="toggle-group">
+                    <button class="toggle-btn active" id="btn-improved" onclick="showView('improved')">✨ Version améliorée</button>
+                    <button class="toggle-btn" id="btn-current" onclick="showView('current')">Version actuelle</button>
                 </div>
             </div>
 
-            <div class="benefits-box">
-                <h4>
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M12 20V10"/>
-                        <path d="M18 20V4"/>
-                        <path d="M6 20v-4"/>
-                    </svg>
-                    Bénéfices attendus
-                </h4>
-                <ul>
-                    <li>Réduction des clics pour accéder aux stats : -100% (visible immédiatement)</li>
-                    <li>Accès direct aux visuels depuis la vignette → +X% d'utilisation de l'app visuels</li>
-                    <li>Wording orienté action → Meilleur engagement des hôtes</li>
-                    <li>Cohérence mobile/desktop → UX unifiée</li>
-                </ul>
+            <!-- ==================== VERSION AMÉLIORÉE ==================== -->
+            <div id="view-improved" class="view-container active">
+                <h2 class="section-title">À venir</h2>
+                
+                <div class="events-grid">
+                    <!-- Card 1 - Améliorée -->
+                    <article class="event-card">
+                        <div class="card-image">
+                            <img src="comedie.png" alt="Comédie humoristique - Amélie Abrieu">
+                            <span class="card-date">17/05</span>
+                            <span class="card-type">Billetterie</span>
+                            <span class="card-price">15€</span>
+                        </div>
+                        <div class="card-body">
+                            <div class="card-status-row">
+                                <span class="status-badge published">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                        <polyline points="20 6 9 17 4 12"></polyline>
+                                    </svg>
+                                    Publié
+                                </span>
+                                <div class="manage-wrapper">
+                                    <button class="btn-manage" onclick="toggleDropdown(this)">
+                                        gérer
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <polyline points="6 9 12 15 18 9"></polyline>
+                                        </svg>
+                                    </button>
+                                    <div class="dropdown-menu">
+                                        <a href="#">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                                                <circle cx="9" cy="7" r="4"/>
+                                                <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                                                <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                                            </svg>
+                                            Suivre mes inscrits
+                                        </a>
+                                        <a href="#">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                                                <polyline points="14 2 14 8 20 8"/>
+                                                <line x1="16" y1="13" x2="8" y2="13"/>
+                                                <line x1="16" y1="17" x2="8" y2="17"/>
+                                            </svg>
+                                            Télécharger le relevé
+                                        </a>
+                                        <a href="#">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                                                <line x1="9" y1="3" x2="9" y2="21"/>
+                                            </svg>
+                                            Scanner les billets
+                                        </a>
+                                        <div class="dropdown-divider"></div>
+                                        <a href="#">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
+                                                <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
+                                            </svg>
+                                            Modifier l'évènement
+                                        </a>
+                                        <button class="danger">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <circle cx="12" cy="12" r="10"/>
+                                                <line x1="15" y1="9" x2="9" y2="15"/>
+                                                <line x1="9" y1="9" x2="15" y2="15"/>
+                                            </svg>
+                                            Annuler l'évènement
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <h3 class="card-title">Comédie humoristique chez l'habitant</h3>
+
+                            <div class="card-meta">
+                                <div class="meta-item">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                                        <circle cx="12" cy="7" r="4"/>
+                                    </svg>
+                                    Amélie Abrieu chez THOMAS G.
+                                </div>
+                                <div class="meta-item">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                                        <circle cx="12" cy="10" r="3"/>
+                                    </svg>
+                                    Saint-Max (54)
+                                </div>
+                            </div>
+
+                            <!-- NOUVEAU : Stats -->
+                            <div class="stats-bar">
+                                <div class="stat-item">
+                                    <div class="stat-icon views">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                                            <circle cx="12" cy="12" r="3"/>
+                                        </svg>
+                                    </div>
+                                    <div class="stat-content">
+                                        <span class="stat-value">9</span>
+                                        <span class="stat-label">vues</span>
+                                    </div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-icon tickets">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <path d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"/>
+                                        </svg>
+                                    </div>
+                                    <div class="stat-content">
+                                        <span class="stat-value">0/20</span>
+                                        <span class="stat-label">places</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- NOUVEAU : Boutons d'action -->
+                            <div class="card-actions">
+                                <a href="#" class="action-btn primary">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                                        <circle cx="9" cy="9" r="2"/>
+                                        <path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/>
+                                    </svg>
+                                    Créer mes visuels
+                                </a>
+                                <a href="#" class="action-btn secondary">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                                        <circle cx="9" cy="7" r="4"/>
+                                        <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                                        <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                                    </svg>
+                                    Mes inscrits
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Card 2 - Améliorée (Marionnettes) -->
+                    <article class="event-card">
+                        <div class="card-image">
+                            <img src="marionnettes.png" alt="Spectacle marionnettes">
+                            <span class="card-date">15/03</span>
+                            <span class="card-type">Billetterie</span>
+                            <span class="card-price">10€</span>
+                        </div>
+                        <div class="card-body">
+                            <div class="card-status-row">
+                                <span class="status-badge published">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                        <polyline points="20 6 9 17 4 12"></polyline>
+                                    </svg>
+                                    Publié
+                                </span>
+                                <div class="manage-wrapper">
+                                    <button class="btn-manage" onclick="toggleDropdown(this)">
+                                        gérer
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <polyline points="6 9 12 15 18 9"></polyline>
+                                        </svg>
+                                    </button>
+                                    <div class="dropdown-menu">
+                                        <a href="#">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                                                <circle cx="9" cy="7" r="4"/>
+                                                <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                                                <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                                            </svg>
+                                            Suivre mes inscrits
+                                        </a>
+                                        <a href="#">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                                                <polyline points="14 2 14 8 20 8"/>
+                                            </svg>
+                                            Télécharger le relevé
+                                        </a>
+                                        <a href="#">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                                                <line x1="9" y1="3" x2="9" y2="21"/>
+                                            </svg>
+                                            Scanner les billets
+                                        </a>
+                                        <div class="dropdown-divider"></div>
+                                        <a href="#">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
+                                                <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
+                                            </svg>
+                                            Modifier l'évènement
+                                        </a>
+                                        <button class="danger">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <circle cx="12" cy="12" r="10"/>
+                                                <line x1="15" y1="9" x2="9" y2="15"/>
+                                                <line x1="9" y1="9" x2="15" y2="15"/>
+                                            </svg>
+                                            Annuler l'évènement
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <h3 class="card-title">Fêtons l'année du serpent avec un spectacle de marionnettes</h3>
+
+                            <div class="card-meta">
+                                <div class="meta-item">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                                        <circle cx="12" cy="7" r="4"/>
+                                    </svg>
+                                    Emilie B. chez THOMAS G.
+                                </div>
+                                <div class="meta-item">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                                        <circle cx="12" cy="10" r="3"/>
+                                    </svg>
+                                    Saint-Max (54)
+                                </div>
+                            </div>
+
+                            <!-- Stats -->
+                            <div class="stats-bar">
+                                <div class="stat-item">
+                                    <div class="stat-icon views">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                                            <circle cx="12" cy="12" r="3"/>
+                                        </svg>
+                                    </div>
+                                    <div class="stat-content">
+                                        <span class="stat-value">23</span>
+                                        <span class="stat-label">vues</span>
+                                    </div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-icon tickets">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <path d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"/>
+                                        </svg>
+                                    </div>
+                                    <div class="stat-content">
+                                        <span class="stat-value">8/15</span>
+                                        <span class="stat-label">places</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Boutons d'action -->
+                            <div class="card-actions">
+                                <a href="#" class="action-btn primary">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                                        <circle cx="9" cy="9" r="2"/>
+                                        <path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/>
+                                    </svg>
+                                    Créer mes visuels
+                                </a>
+                                <a href="#" class="action-btn secondary">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                                        <circle cx="9" cy="7" r="4"/>
+                                        <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                                        <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                                    </svg>
+                                    Mes inscrits
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+                </div>
             </div>
-        </section>
+
+            <!-- ==================== VERSION ACTUELLE ==================== -->
+            <div id="view-current" class="view-container">
+                <h2 class="section-title">À venir</h2>
+                
+                <div class="events-grid">
+                    <!-- Card 1 - Version actuelle -->
+                    <article class="event-card">
+                        <div class="card-image">
+                            <img src="comedie.png" alt="Comédie humoristique">
+                            <span class="card-date">17/05</span>
+                            <span class="card-type">Billetterie</span>
+                            <span class="card-price">15€</span>
+                        </div>
+                        <div class="card-body">
+                            <div class="card-status-row">
+                                <span class="status-badge published">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                        <polyline points="20 6 9 17 4 12"></polyline>
+                                    </svg>
+                                    Publié
+                                </span>
+                                <button class="btn-manage">
+                                    gérer
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <polyline points="6 9 12 15 18 9"></polyline>
+                                    </svg>
+                                </button>
+                            </div>
+
+                            <h3 class="card-title">Comédie humoristique chez l'habitant</h3>
+
+                            <div class="card-meta">
+                                <div class="meta-item">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                                        <circle cx="12" cy="7" r="4"/>
+                                    </svg>
+                                    Amélie Abrieu chez THOMAS G.
+                                </div>
+                                <div class="meta-item">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                                        <circle cx="12" cy="10" r="3"/>
+                                    </svg>
+                                    Saint-Max (54)
+                                </div>
+                            </div>
+
+                            <div class="card-links">
+                                <a href="#" class="card-link">Voir l'évènement</a>
+                                <a href="#" class="card-link">Gérer les réservations</a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Card 2 - Version actuelle -->
+                    <article class="event-card">
+                        <div class="card-image">
+                            <img src="marionnettes.png" alt="Spectacle marionnettes">
+                            <span class="card-date">15/03</span>
+                            <span class="card-type">Billetterie</span>
+                            <span class="card-price">10€</span>
+                        </div>
+                        <div class="card-body">
+                            <div class="card-status-row">
+                                <span class="status-badge published">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                        <polyline points="20 6 9 17 4 12"></polyline>
+                                    </svg>
+                                    Publié
+                                </span>
+                                <button class="btn-manage">
+                                    gérer
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <polyline points="6 9 12 15 18 9"></polyline>
+                                    </svg>
+                                </button>
+                            </div>
+
+                            <h3 class="card-title">Fêtons l'année du serpent avec un spectacle de marionnettes</h3>
+
+                            <div class="card-meta">
+                                <div class="meta-item">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                                        <circle cx="12" cy="7" r="4"/>
+                                    </svg>
+                                    Emilie B. chez THOMAS G.
+                                </div>
+                                <div class="meta-item">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                                        <circle cx="12" cy="10" r="3"/>
+                                    </svg>
+                                    Saint-Max (54)
+                                </div>
+                            </div>
+
+                            <div class="card-links">
+                                <a href="#" class="card-link">Voir l'évènement</a>
+                                <a href="#" class="card-link">Gérer les réservations</a>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== TAB: MESSAGES ==================== -->
+        <div id="tab-messages" class="tab-content">
+            
+            <div class="toggle-container">
+                <div class="toggle-group">
+                    <button class="toggle-btn active" id="btn-msg-improved" onclick="showMsgView('improved')">✨ Version améliorée</button>
+                    <button class="toggle-btn" id="btn-msg-current" onclick="showMsgView('current')">Version actuelle</button>
+                </div>
+            </div>
+
+            <!-- Messages Version Améliorée -->
+            <div id="msg-view-improved" class="view-container active">
+                <h2 class="section-title">Plus tôt</h2>
+                
+                <div class="messages-list">
+                    <a href="#" class="message-item unread">
+                        <div class="message-avatar">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                                <circle cx="12" cy="7" r="4"/>
+                            </svg>
+                        </div>
+                        <div class="message-content">
+                            <div class="message-header">
+                                <span class="message-name">Mourad B.</span>
+                                <span class="message-artist-name">« Mourad en concert »</span>
+                            </div>
+                            <div class="message-project">Concert acoustique</div>
+                            <div class="message-location">📍 Lailly-en-Val</div>
+                        </div>
+                        <div class="unread-dot"></div>
+                    </a>
+
+                    <a href="#" class="message-item">
+                        <div class="message-avatar">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                                <circle cx="12" cy="7" r="4"/>
+                            </svg>
+                        </div>
+                        <div class="message-content">
+                            <div class="message-header">
+                                <span class="message-name">Jean-Louis A.</span>
+                                <span class="message-artist-name">« Chansons en vers et à l'endroit »</span>
+                            </div>
+                            <div class="message-project">Spectacle musical</div>
+                            <div class="message-location">📍 Metz</div>
+                        </div>
+                    </a>
+
+                    <a href="#" class="message-item">
+                        <div class="message-avatar">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                                <circle cx="12" cy="7" r="4"/>
+                            </svg>
+                        </div>
+                        <div class="message-content">
+                            <div class="message-header">
+                                <span class="message-name">Emilie B.</span>
+                                <span class="message-artist-name">« Spectacle de marionnettes »</span>
+                            </div>
+                            <div class="message-project">Création de porte bonheur</div>
+                            <div class="message-location">📍 Nancy</div>
+                        </div>
+                    </a>
+
+                    <a href="#" class="message-item">
+                        <div class="message-avatar">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                                <circle cx="12" cy="7" r="4"/>
+                            </svg>
+                        </div>
+                        <div class="message-content">
+                            <div class="message-header">
+                                <span class="message-name">Estelle D.</span>
+                                <span class="message-artist-name">« Concert pop/rock »</span>
+                            </div>
+                            <div class="message-project">Concert acoustique</div>
+                            <div class="message-location">📍 Bar-le-Duc</div>
+                        </div>
+                    </a>
+
+                    <a href="#" class="message-item">
+                        <div class="message-avatar">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                                <circle cx="12" cy="7" r="4"/>
+                            </svg>
+                        </div>
+                        <div class="message-content">
+                            <div class="message-header">
+                                <span class="message-name">Amélie A.</span>
+                                <span class="message-artist-name">« Nettoyage à sec uniquement ! »</span>
+                            </div>
+                            <div class="message-project">Comédie humoristique</div>
+                            <div class="message-location">📍 Paris 1er</div>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="help-section">
+                    <p>Besoin d'aide ?</p>
+                    <a href="#" class="btn-contact">Contactez-nous</a>
+                </div>
+            </div>
+
+            <!-- Messages Version Actuelle -->
+            <div id="msg-view-current" class="view-container">
+                <h2 class="section-title">Plus tôt</h2>
+                
+                <div class="messages-list">
+                    <a href="#" class="message-item unread">
+                        <div class="message-avatar">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                                <circle cx="12" cy="7" r="4"/>
+                            </svg>
+                        </div>
+                        <div class="message-content">
+                            <div class="message-header">
+                                <span class="message-name">Mourad B. | Mourad en concert</span>
+                            </div>
+                            <div class="message-location">Lailly-en-Val</div>
+                        </div>
+                        <div class="unread-dot"></div>
+                    </a>
+
+                    <a href="#" class="message-item">
+                        <div class="message-avatar">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                                <circle cx="12" cy="7" r="4"/>
+                            </svg>
+                        </div>
+                        <div class="message-content">
+                            <div class="message-header">
+                                <span class="message-name">JeanLouis A. | Chansons en vers et à l'endroit</span>
+                            </div>
+                            <div class="message-location">Metz</div>
+                        </div>
+                    </a>
+
+                    <a href="#" class="message-item">
+                        <div class="message-avatar">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                                <circle cx="12" cy="7" r="4"/>
+                            </svg>
+                        </div>
+                        <div class="message-content">
+                            <div class="message-header">
+                                <span class="message-name">Emilie B. | Spectacle de marionnettes et création de porte bonheur</span>
+                            </div>
+                            <div class="message-location">Nancy</div>
+                        </div>
+                    </a>
+
+                    <a href="#" class="message-item">
+                        <div class="message-avatar">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                                <circle cx="12" cy="7" r="4"/>
+                            </svg>
+                        </div>
+                        <div class="message-content">
+                            <div class="message-header">
+                                <span class="message-name">Estelle D. | Concert pop/rock</span>
+                            </div>
+                            <div class="message-location">Bar-le-Duc</div>
+                        </div>
+                    </a>
+
+                    <a href="#" class="message-item">
+                        <div class="message-avatar">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                                <circle cx="12" cy="7" r="4"/>
+                            </svg>
+                        </div>
+                        <div class="message-content">
+                            <div class="message-header">
+                                <span class="message-name">Amélie A. | Nettoyage à sec uniquement !</span>
+                            </div>
+                            <div class="message-location">Paris 1e Arrondissement</div>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="help-section">
+                    <p>Besoin d'aide ?</p>
+                    <a href="#" class="btn-contact">Contactez-nous</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== TAB: RÉCAPITULATIF ==================== -->
+        <div id="tab-recap" class="tab-content">
+            
+            <h2 class="section-title">Résumé des améliorations proposées</h2>
+
+            <!-- Mon espace -->
+            <div class="comparison-section" style="margin-top: 0; padding-top: 0; border-top: none;">
+                <h3 class="comparison-title">🏠 Mon espace - Cartes évènements</h3>
+                
+                <div class="comparison-grid">
+                    <div class="comparison-card before">
+                        <h3>❌ Avant</h3>
+                        <ul class="wording-list">
+                            <li><span class="wording-old">Stats cachées</span> (1 clic minimum)</li>
+                            <li><span class="wording-old">"Gérer les réservations"</span></li>
+                            <li><span class="wording-old">"Mes visuels"</span> (dans sous-menu)</li>
+                            <li><span class="wording-old">Liens texte simples</span></li>
+                        </ul>
+                    </div>
+                    <div class="comparison-card after">
+                        <h3>✅ Après</h3>
+                        <ul class="wording-list">
+                            <li><span class="wording-new">Stats visibles</span> (vues + places)</li>
+                            <li><span class="wording-new">"Suivre mes inscrits"</span></li>
+                            <li><span class="wording-new">"Créer mes visuels"</span> (bouton principal)</li>
+                            <li><span class="wording-new">Boutons d'action clairs</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Menu gérer -->
+            <div class="comparison-section">
+                <h3 class="comparison-title">⚙️ Menu "gérer" amélioré</h3>
+                
+                <div class="comparison-grid">
+                    <div class="comparison-card before">
+                        <h3>❌ Avant</h3>
+                        <ul class="wording-list">
+                            <li><span class="wording-old">"Gérer les réservations"</span></li>
+                            <li>Texte brut sans icônes</li>
+                            <li>Actions non hiérarchisées</li>
+                        </ul>
+                    </div>
+                    <div class="comparison-card after">
+                        <h3>✅ Après</h3>
+                        <ul class="wording-list">
+                            <li><span class="wording-new">"Suivre mes inscrits"</span></li>
+                            <li><span class="wording-new">Icônes pour chaque action</span></li>
+                            <li><span class="wording-new">Séparateur + danger en rouge</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Messages -->
+            <div class="comparison-section">
+                <h3 class="comparison-title">💬 Page Messages</h3>
+                
+                <div class="comparison-grid">
+                    <div class="comparison-card before">
+                        <h3>❌ Avant</h3>
+                        <ul class="wording-list">
+                            <li><span class="wording-old">"Prénom N. | Nom d'artiste"</span></li>
+                            <li>Tout sur une ligne → confusion</li>
+                            <li>Pas de contexte du projet</li>
+                            <li>Doublons si prénom = nom d'artiste</li>
+                        </ul>
+                    </div>
+                    <div class="comparison-card after">
+                        <h3>✅ Après</h3>
+                        <ul class="wording-list">
+                            <li><span class="wording-new">Prénom en gras + nom d'artiste en italique</span></li>
+                            <li><span class="wording-new">Hiérarchie visuelle claire</span></li>
+                            <li><span class="wording-new">Type de projet affiché</span></li>
+                            <li><span class="wording-new">Guillemets pour distinguer le nom d'artiste</span></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="benefits-box">
+                    <h4>💡 Règle intelligente pour les noms</h4>
+                    <ul>
+                        <li>Si nom d'artiste ≠ prénom → afficher les deux</li>
+                        <li>Si nom d'artiste = prénom → afficher uniquement le prénom (évite "Jean J. | Jean")</li>
+                        <li>Nom d'artiste toujours entre guillemets pour le distinguer</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Bénéfices -->
+            <div class="comparison-section">
+                <h3 class="comparison-title">📈 Bénéfices attendus</h3>
+                
+                <div class="benefits-box">
+                    <h4>Impact UX</h4>
+                    <ul>
+                        <li>100% de réduction des clics pour voir les stats</li>
+                        <li>Accès direct à la création de visuels (augmentation d'usage attendue)</li>
+                        <li>Wording orienté action → plus d'engagement</li>
+                        <li>Fin de la confusion prénom/nom d'artiste dans les messages</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
     </main>
 
-    <!-- ==================== JAVASCRIPT ==================== -->
     <script>
+        // Tab navigation
+        function showTab(tabId) {
+            // Hide all tabs
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // Show selected tab
+            document.getElementById('tab-' + tabId).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        // Mon espace version toggle
         function showView(view) {
-            // Masquer toutes les vues
             document.getElementById('view-improved').classList.remove('active');
             document.getElementById('view-current').classList.remove('active');
-            
-            // Désactiver tous les boutons
             document.getElementById('btn-improved').classList.remove('active');
             document.getElementById('btn-current').classList.remove('active');
             
-            // Activer la vue sélectionnée
-            if (view === 'improved') {
-                document.getElementById('view-improved').classList.add('active');
-                document.getElementById('btn-improved').classList.add('active');
-            } else {
-                document.getElementById('view-current').classList.add('active');
-                document.getElementById('btn-current').classList.add('active');
+            document.getElementById('view-' + view).classList.add('active');
+            document.getElementById('btn-' + view).classList.add('active');
+        }
+
+        // Messages version toggle
+        function showMsgView(view) {
+            document.getElementById('msg-view-improved').classList.remove('active');
+            document.getElementById('msg-view-current').classList.remove('active');
+            document.getElementById('btn-msg-improved').classList.remove('active');
+            document.getElementById('btn-msg-current').classList.remove('active');
+            
+            document.getElementById('msg-view-' + view).classList.add('active');
+            document.getElementById('btn-msg-' + view).classList.add('active');
+        }
+
+        // Dropdown toggle
+        function toggleDropdown(btn) {
+            const dropdown = btn.nextElementSibling;
+            const isOpen = dropdown.classList.contains('show');
+            
+            // Close all dropdowns
+            document.querySelectorAll('.dropdown-menu').forEach(d => d.classList.remove('show'));
+            document.querySelectorAll('.btn-manage').forEach(b => b.classList.remove('open'));
+            
+            if (!isOpen) {
+                dropdown.classList.add('show');
+                btn.classList.add('open');
             }
         }
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('.manage-wrapper')) {
+                document.querySelectorAll('.dropdown-menu').forEach(d => d.classList.remove('show'));
+                document.querySelectorAll('.btn-manage').forEach(b => b.classList.remove('open'));
+            }
+        });
     </script>
 </body>
 </html>
