@@ -642,21 +642,22 @@
         .message-header {
             display: flex;
             align-items: baseline;
-            gap: 8px;
-            margin-bottom: 2px;
+            gap: 6px;
+            margin-bottom: 4px;
             flex-wrap: wrap;
         }
 
         .message-name {
             font-weight: 700;
-            font-size: 14px;
+            font-size: 15px;
             color: var(--purple-dark);
         }
 
         .message-artist-name {
-            font-size: 12px;
-            color: var(--gray-400);
+            font-size: 13px;
+            color: var(--coral);
             font-style: italic;
+            font-weight: 500;
         }
 
         .message-project {
@@ -774,6 +775,14 @@
             font-weight: 600;
             color: var(--purple-dark);
             margin-bottom: 4px;
+        }
+
+        .contact-artist-name {
+            font-size: 16px;
+            color: var(--coral);
+            font-style: italic;
+            font-weight: 500;
+            margin-bottom: 8px;
         }
 
         .contact-project {
@@ -915,6 +924,35 @@
             width: 20px;
             height: 20px;
             color: white;
+        }
+
+        /* ==================== INFO BOX ==================== */
+        .info-box {
+            background: #FEF3C7;
+            border-left: 4px solid #F59E0B;
+            padding: 16px 20px;
+            border-radius: 0 var(--radius) var(--radius) 0;
+            margin-bottom: 24px;
+        }
+
+        .info-box h4 {
+            font-size: 14px;
+            font-weight: 700;
+            color: #92400E;
+            margin-bottom: 8px;
+        }
+
+        .info-box p {
+            font-size: 13px;
+            color: #92400E;
+            margin-bottom: 4px;
+        }
+
+        .info-box code {
+            background: rgba(0,0,0,0.1);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 12px;
         }
     </style>
 </head>
@@ -1182,9 +1220,18 @@
                 <p class="messages-intro">Toutes vos conversations et suggestions sont dans votre messagerie.</p>
             </div>
 
+            <!-- Info box pour expliquer la logique -->
+            <div class="info-box">
+                <h4>💡 Logique d'affichage des noms d'artistes</h4>
+                <p>✓ Si le nom d'artiste est <strong>différent</strong> du prénom → on affiche les deux</p>
+                <p>✓ Si le nom d'artiste est <strong>identique</strong> au prénom → on n'affiche que le prénom (évite les doublons)</p>
+                <p style="margin-top: 8px; font-style: italic;">Exemple : "Mourad B." seul car son nom d'artiste est "Mourad"</p>
+            </div>
+
             <h2 class="section-title">Plus tôt</h2>
             
             <div class="messages-list">
+                <!-- Exemple avec nom d'artiste DIFFÉRENT du prénom -->
                 <div class="message-item unread" onclick="showPage('conversation')">
                     <div class="message-avatar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
                     <div class="message-content">
@@ -1198,6 +1245,7 @@
                     <div class="unread-dot"></div>
                 </div>
 
+                <!-- Exemple avec nom d'artiste DIFFÉRENT du prénom -->
                 <div class="message-item" onclick="showPage('conversation')">
                     <div class="message-avatar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
                     <div class="message-content">
@@ -1210,6 +1258,20 @@
                     </div>
                 </div>
 
+                <!-- Exemple avec nom d'artiste IDENTIQUE au prénom (pas de doublon) -->
+                <div class="message-item" onclick="showPage('conversation')">
+                    <div class="message-avatar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+                    <div class="message-content">
+                        <div class="message-header">
+                            <span class="message-name">Mourad B.</span>
+                            <!-- PAS de nom d'artiste affiché car = "Mourad" (évite doublon) -->
+                        </div>
+                        <div class="message-project">Concert acoustique</div>
+                        <div class="message-location">📍 Lailly-en-Val</div>
+                    </div>
+                </div>
+
+                <!-- Exemple avec nom d'artiste DIFFÉRENT du prénom -->
                 <div class="message-item" onclick="showPage('conversation')">
                     <div class="message-avatar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
                     <div class="message-content">
@@ -1222,18 +1284,7 @@
                     </div>
                 </div>
 
-                <div class="message-item" onclick="showPage('conversation')">
-                    <div class="message-avatar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
-                    <div class="message-content">
-                        <div class="message-header">
-                            <span class="message-name">Estelle D.</span>
-                            <span class="message-artist-name">« Concert pop/rock »</span>
-                        </div>
-                        <div class="message-project">Concert live</div>
-                        <div class="message-location">📍 Bar-le-Duc</div>
-                    </div>
-                </div>
-
+                <!-- Exemple avec nom d'artiste DIFFÉRENT du prénom -->
                 <div class="message-item" onclick="showPage('conversation')">
                     <div class="message-avatar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
                     <div class="message-content">
@@ -1243,6 +1294,19 @@
                         </div>
                         <div class="message-project">Comédie humoristique</div>
                         <div class="message-location">📍 Paris 1er</div>
+                    </div>
+                </div>
+
+                <!-- Exemple avec nom d'artiste IDENTIQUE au prénom (pas de doublon) -->
+                <div class="message-item" onclick="showPage('conversation')">
+                    <div class="message-avatar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+                    <div class="message-content">
+                        <div class="message-header">
+                            <span class="message-name">Sophie L.</span>
+                            <!-- PAS de nom d'artiste affiché car = "Sophie" (évite doublon) -->
+                        </div>
+                        <div class="message-project">Atelier peinture</div>
+                        <div class="message-location">📍 Lyon 3e</div>
                     </div>
                 </div>
             </div>
@@ -1272,7 +1336,8 @@
 
             <div class="conversation-contact">
                 <h1 class="contact-name">Caroline C.</h1>
-                <p class="contact-project">Contes des îles de l'Océan Indien et des Caraïbes</p>
+                <!-- Nom d'artiste bien visible sous le prénom -->
+                <p class="contact-artist-name">« Contes des îles de l'Océan Indien et des Caraïbes »</p>
                 <p class="contact-location">Paris 11e Arrondissement · <a href="#">Voir son projet</a></p>
             </div>
 
@@ -1298,7 +1363,8 @@
                 </div>
 
                 <div class="thread-message sent">
-                    <p class="thread-sender">Caroline C. <span>· mar. 11 novembre à 16:15</span></p>
+                    <!-- Dans les messages envoyés par l'artiste, on affiche aussi son nom d'artiste -->
+                    <p class="thread-sender">Caroline C. <span style="color: var(--coral); font-style: italic;">« Contes des îles... »</span> <span>· mar. 11 novembre à 16:15</span></p>
                     <div class="thread-bubble">
                         Bonjour, Merci pour votre intérêt. Je vous invite à visiter mon site Web, dans la section Galerie, vous verrez quelques et deux extraits vidéos <a href="#">https://lagazettedecaroline.fr/category/galerie/</a> Bien à vous, Caroline
                     </div>
@@ -1320,13 +1386,9 @@
 
     <script>
         function showPage(pageId) {
-            // Hide all pages
             document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-            
-            // Show selected page
             document.getElementById('page-' + pageId).classList.add('active');
             
-            // Update nav states
             document.getElementById('nav-mon-espace').classList.remove('active');
             document.getElementById('nav-messages').classList.remove('active');
             document.getElementById('mobile-mon-espace').classList.remove('active');
@@ -1340,7 +1402,6 @@
                 document.getElementById('mobile-messages').classList.add('active');
             }
 
-            // Scroll to top
             window.scrollTo(0, 0);
         }
 
