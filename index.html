@@ -40,6 +40,13 @@
             color: var(--purple-dark);
             line-height: 1.5;
             min-height: 100vh;
+            padding-bottom: 70px;
+        }
+
+        @media (min-width: 769px) {
+            body {
+                padding-bottom: 0;
+            }
         }
 
         /* ==================== HEADER ==================== */
@@ -80,6 +87,7 @@
             font-size: 14px;
             font-weight: 500;
             transition: color 0.2s;
+            cursor: pointer;
         }
 
         .nav-link:hover,
@@ -115,6 +123,77 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                padding: 12px 16px;
+            }
+            
+            .nav {
+                display: none;
+            }
+        }
+
+        /* ==================== MOBILE NAV BAR ==================== */
+        .mobile-nav {
+            display: none;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: var(--bg-white);
+            border-top: 1px solid var(--gray-200);
+            padding: 8px 0 12px;
+            z-index: 100;
+        }
+
+        @media (max-width: 768px) {
+            .mobile-nav {
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+            }
+        }
+
+        .mobile-nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            text-decoration: none;
+            color: var(--gray-500);
+            font-size: 11px;
+            font-weight: 600;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .mobile-nav-item:hover,
+        .mobile-nav-item.active {
+            color: var(--purple-dark);
+        }
+
+        .mobile-nav-item svg {
+            width: 22px;
+            height: 22px;
+        }
+
+        .mobile-nav-item .mobile-badge {
+            position: absolute;
+            top: -4px;
+            right: 8px;
+            background: var(--coral);
+            color: white;
+            font-size: 9px;
+            font-weight: 700;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         /* ==================== MAIN ==================== */
@@ -122,6 +201,12 @@
             max-width: 960px;
             margin: 0 auto;
             padding: 40px 24px 80px;
+        }
+
+        @media (max-width: 768px) {
+            .main {
+                padding: 24px 16px 100px;
+            }
         }
 
         .page-header {
@@ -139,6 +224,15 @@
         .page-description {
             color: var(--gray-500);
             font-size: 15px;
+        }
+
+        /* ==================== PAGES ==================== */
+        .page {
+            display: none;
+        }
+
+        .page.active {
+            display: block;
         }
 
         /* ==================== SECTION ==================== */
@@ -214,7 +308,6 @@
             padding: 14px 16px 16px;
         }
 
-        /* Status row */
         .card-status-row {
             display: flex;
             align-items: center;
@@ -242,7 +335,6 @@
             height: 14px;
         }
 
-        /* Menu gérer */
         .manage-wrapper {
             position: relative;
         }
@@ -277,7 +369,6 @@
             transform: rotate(180deg);
         }
 
-        /* Dropdown menu */
         .dropdown-menu {
             position: absolute;
             top: calc(100% + 4px);
@@ -340,7 +431,6 @@
             margin: 4px 0;
         }
 
-        /* Title */
         .card-title {
             font-size: 15px;
             font-weight: 700;
@@ -349,7 +439,6 @@
             line-height: 1.35;
         }
 
-        /* Meta */
         .card-meta {
             margin-bottom: 12px;
         }
@@ -371,7 +460,6 @@
             color: var(--gray-400);
         }
 
-        /* Stats bar */
         .stats-bar {
             display: flex;
             gap: 12px;
@@ -432,7 +520,6 @@
             letter-spacing: 0.3px;
         }
 
-        /* Action buttons */
         .card-actions {
             display: flex;
             gap: 8px;
@@ -481,24 +568,7 @@
             border-color: var(--gray-400);
         }
 
-        /* Responsive */
         @media (max-width: 768px) {
-            .header {
-                padding: 12px 16px;
-            }
-            
-            .nav {
-                display: none;
-            }
-            
-            .main {
-                padding: 24px 16px 60px;
-            }
-            
-            .page-title {
-                font-size: 26px;
-            }
-
             .action-btn {
                 padding: 10px 8px;
                 font-size: 12px;
@@ -509,20 +579,357 @@
                 height: 14px;
             }
         }
+
+        /* ==================== MESSAGES PAGE ==================== */
+        .messages-intro {
+            color: var(--gray-500);
+            font-size: 14px;
+            margin-bottom: 24px;
+        }
+
+        .messages-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .message-item {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 14px 16px;
+            background: var(--bg-white);
+            border-radius: var(--radius);
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.15s;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .message-item:hover {
+            box-shadow: var(--shadow-card);
+            transform: translateY(-1px);
+        }
+
+        .message-item.unread {
+            background: #FEF7F6;
+            border-left: 3px solid var(--coral);
+        }
+
+        .message-avatar {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--gray-200);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .message-avatar svg {
+            width: 20px;
+            height: 20px;
+            color: var(--gray-400);
+        }
+
+        .message-content {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .message-header {
+            display: flex;
+            align-items: baseline;
+            gap: 8px;
+            margin-bottom: 2px;
+            flex-wrap: wrap;
+        }
+
+        .message-name {
+            font-weight: 700;
+            font-size: 14px;
+            color: var(--purple-dark);
+        }
+
+        .message-artist-name {
+            font-size: 12px;
+            color: var(--gray-400);
+            font-style: italic;
+        }
+
+        .message-project {
+            font-size: 13px;
+            color: var(--gray-500);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .message-location {
+            font-size: 12px;
+            color: var(--gray-400);
+            margin-top: 2px;
+        }
+
+        .unread-dot {
+            width: 10px;
+            height: 10px;
+            background: var(--coral);
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        .help-section {
+            margin-top: 40px;
+            padding-top: 24px;
+            border-top: 1px solid var(--gray-200);
+        }
+
+        .help-section p {
+            font-size: 14px;
+            color: var(--gray-500);
+            margin-bottom: 12px;
+        }
+
+        .btn-contact {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background: var(--coral);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .btn-contact:hover {
+            background: var(--coral-hover);
+        }
+
+        /* ==================== CONVERSATION PAGE ==================== */
+        .conversation-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .btn-back {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 1px solid var(--gray-200);
+            background: var(--bg-white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-back:hover {
+            background: var(--gray-100);
+        }
+
+        .btn-back svg {
+            width: 20px;
+            height: 20px;
+            color: var(--purple-dark);
+        }
+
+        .btn-create-event {
+            margin-left: auto;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background: var(--coral);
+            color: white;
+            border: none;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .btn-create-event svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        .conversation-contact {
+            margin-bottom: 32px;
+        }
+
+        .contact-name {
+            font-family: 'Lora', Georgia, serif;
+            font-size: 28px;
+            font-weight: 600;
+            color: var(--purple-dark);
+            margin-bottom: 4px;
+        }
+
+        .contact-project {
+            font-size: 14px;
+            color: var(--gray-500);
+        }
+
+        .contact-location {
+            font-size: 14px;
+            color: var(--gray-500);
+        }
+
+        .contact-location a {
+            color: var(--coral);
+            text-decoration: none;
+        }
+
+        .contact-location a:hover {
+            text-decoration: underline;
+        }
+
+        .conversation-notice {
+            text-align: center;
+            color: var(--gray-400);
+            font-size: 13px;
+            font-style: italic;
+            margin-bottom: 24px;
+            padding: 0 20px;
+        }
+
+        .messages-thread {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin-bottom: 24px;
+        }
+
+        .thread-message {
+            max-width: 85%;
+        }
+
+        .thread-message.received {
+            align-self: flex-start;
+        }
+
+        .thread-message.sent {
+            align-self: flex-end;
+        }
+
+        .thread-sender {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--purple-dark);
+            margin-bottom: 6px;
+        }
+
+        .thread-sender span {
+            font-weight: 400;
+            color: var(--gray-400);
+            margin-left: 8px;
+        }
+
+        .thread-bubble {
+            padding: 14px 18px;
+            border-radius: 12px;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .thread-message.received .thread-bubble {
+            background: var(--bg-white);
+            border: 1px solid var(--gray-200);
+            border-top-left-radius: 4px;
+        }
+
+        .thread-message.sent .thread-bubble {
+            background: #FEF3F1;
+            border-left: 3px solid var(--coral);
+            border-radius: 12px;
+            border-top-right-radius: 4px;
+        }
+
+        .thread-bubble strong {
+            color: var(--purple-dark);
+        }
+
+        .thread-bubble a {
+            color: var(--coral);
+            word-break: break-all;
+        }
+
+        .message-input-container {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            padding: 16px;
+            background: var(--bg-white);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-card);
+        }
+
+        .message-input {
+            flex: 1;
+            padding: 12px 16px;
+            border: 1px solid var(--gray-200);
+            border-radius: 24px;
+            font-size: 14px;
+            font-family: inherit;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .message-input:focus {
+            border-color: var(--coral);
+        }
+
+        .message-input::placeholder {
+            color: var(--gray-400);
+        }
+
+        .btn-send {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--coral);
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .btn-send:hover {
+            background: var(--coral-hover);
+        }
+
+        .btn-send svg {
+            width: 20px;
+            height: 20px;
+            color: white;
+        }
     </style>
 </head>
 <body>
     <!-- ==================== HEADER ==================== -->
     <header class="header">
-        <a href="#" class="logo">H<span>O</span>RMUR</a>
+        <a href="#" class="logo" onclick="showPage('mon-espace')">H<span>O</span>RMUR</a>
         <nav class="nav">
-            <a href="#" class="nav-link">Accueil</a>
-            <a href="#" class="nav-link">Artistes</a>
-            <a href="#" class="nav-link">Lieux</a>
-            <a href="#" class="nav-link">Évènements</a>
-            <a href="#" class="nav-link">En savoir plus</a>
-            <a href="#" class="nav-link active">Mon espace</a>
-            <a href="#" class="nav-link nav-messages">
+            <a class="nav-link">Accueil</a>
+            <a class="nav-link">Artistes</a>
+            <a class="nav-link">Lieux</a>
+            <a class="nav-link">Évènements</a>
+            <a class="nav-link">En savoir plus</a>
+            <a class="nav-link active" id="nav-mon-espace" onclick="showPage('mon-espace')">Mon espace</a>
+            <a class="nav-link nav-messages" id="nav-messages" onclick="showPage('messages')">
                 Messages
                 <span class="badge">2</span>
             </a>
@@ -535,553 +942,408 @@
         </nav>
     </header>
 
+    <!-- ==================== MOBILE NAV BAR ==================== -->
+    <nav class="mobile-nav">
+        <a class="mobile-nav-item" onclick="showPage('mon-espace')">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="11" cy="11" r="8"/>
+                <path d="m21 21-4.35-4.35"/>
+            </svg>
+            RECHERCHER
+        </a>
+        <a class="mobile-nav-item active" id="mobile-mon-espace" onclick="showPage('mon-espace')">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                <circle cx="12" cy="7" r="4"/>
+            </svg>
+            MON ESPACE
+        </a>
+        <a class="mobile-nav-item" id="mobile-messages" onclick="showPage('messages')">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+            </svg>
+            <span class="mobile-badge">2</span>
+            MESSAGES
+        </a>
+        <a class="mobile-nav-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="3"/>
+                <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+            </svg>
+            PROFIL
+        </a>
+    </nav>
+
     <!-- ==================== MAIN ==================== -->
     <main class="main">
-        <div class="page-header">
-            <h1 class="page-title">Mon espace</h1>
-            <p class="page-description">Retrouvez vos projets, lieux, propositions, évènements et réservations en cours ou à venir.</p>
-        </div>
-
-        <h2 class="section-title">À venir</h2>
         
-        <div class="events-grid">
-            <!-- Card 1 - Comédie -->
-            <article class="event-card">
-                <div class="card-image">
-                    <img src="https://images.unsplash.com/photo-1527224857830-43a7acc85260?w=600&h=450&fit=crop" alt="Comédie humoristique">
-                    <span class="card-date">17/05</span>
-                    <span class="card-price">15€</span>
-                </div>
-                <div class="card-body">
-                    <div class="card-status-row">
-                        <span class="status-badge published">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
-                                <polyline points="20 6 9 17 4 12"></polyline>
-                            </svg>
-                            Publié
-                        </span>
-                        <div class="manage-wrapper">
-                            <button class="btn-manage" onclick="toggleDropdown(this)">
-                                gérer
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <polyline points="6 9 12 15 18 9"></polyline>
+        <!-- ==================== PAGE: MON ESPACE ==================== -->
+        <div id="page-mon-espace" class="page active">
+            <div class="page-header">
+                <h1 class="page-title">Mon espace</h1>
+                <p class="page-description">Retrouvez vos projets, lieux, propositions, évènements et réservations en cours ou à venir.</p>
+            </div>
+
+            <h2 class="section-title">À venir</h2>
+            
+            <div class="events-grid">
+                <!-- Card 1 -->
+                <article class="event-card">
+                    <div class="card-image">
+                        <img src="https://images.unsplash.com/photo-1527224857830-43a7acc85260?w=600&h=450&fit=crop" alt="Comédie humoristique">
+                        <span class="card-date">17/05</span>
+                        <span class="card-price">15€</span>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-status-row">
+                            <span class="status-badge published">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
                                 </svg>
-                            </button>
-                            <div class="dropdown-menu">
-                                <a href="#">
+                                Publié
+                            </span>
+                            <div class="manage-wrapper">
+                                <button class="btn-manage" onclick="toggleDropdown(this)">
+                                    gérer
                                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
-                                        <circle cx="9" cy="7" r="4"/>
-                                        <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
-                                        <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                                        <polyline points="6 9 12 15 18 9"></polyline>
                                     </svg>
-                                    Suivre mes inscrits
-                                </a>
-                                <a href="#">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-                                        <polyline points="14 2 14 8 20 8"/>
-                                        <line x1="16" y1="13" x2="8" y2="13"/>
-                                        <line x1="16" y1="17" x2="8" y2="17"/>
-                                    </svg>
-                                    Télécharger le relevé
-                                </a>
-                                <a href="#">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
-                                        <line x1="9" y1="3" x2="9" y2="21"/>
-                                    </svg>
-                                    Scanner les billets
-                                </a>
-                                <div class="dropdown-divider"></div>
-                                <a href="#">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
-                                        <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
-                                    </svg>
-                                    Modifier l'évènement
-                                </a>
-                                <button class="danger">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <circle cx="12" cy="12" r="10"/>
-                                        <line x1="15" y1="9" x2="9" y2="15"/>
-                                        <line x1="9" y1="9" x2="15" y2="15"/>
-                                    </svg>
-                                    Annuler l'évènement
                                 </button>
+                                <div class="dropdown-menu">
+                                    <a href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>Suivre mes inscrits</a>
+                                    <a href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Télécharger le relevé</a>
+                                    <a href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="9" y1="3" x2="9" y2="21"/></svg>Scanner les billets</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>Modifier l'évènement</a>
+                                    <button class="danger"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>Annuler l'évènement</button>
+                                </div>
                             </div>
+                        </div>
+                        <h3 class="card-title">Comédie humoristique chez l'habitant</h3>
+                        <div class="card-meta">
+                            <div class="meta-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Amélie Abrieu chez THOMAS G.</div>
+                            <div class="meta-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Saint-Max (54)</div>
+                        </div>
+                        <div class="stats-bar">
+                            <div class="stat-item">
+                                <div class="stat-icon views"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></div>
+                                <div class="stat-content"><span class="stat-value">9</span><span class="stat-label">vues</span></div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-icon tickets"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"/></svg></div>
+                                <div class="stat-content"><span class="stat-value">0/20</span><span class="stat-label">places</span></div>
+                            </div>
+                        </div>
+                        <div class="card-actions">
+                            <a href="#" class="action-btn primary"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg>Créer mes visuels</a>
+                            <a href="#" class="action-btn secondary"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>Suivre mes inscrits</a>
                         </div>
                     </div>
+                </article>
 
-                    <h3 class="card-title">Comédie humoristique chez l'habitant</h3>
-
-                    <div class="card-meta">
-                        <div class="meta-item">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
-                                <circle cx="12" cy="7" r="4"/>
-                            </svg>
-                            Amélie Abrieu chez THOMAS G.
+                <!-- Card 2 -->
+                <article class="event-card">
+                    <div class="card-image">
+                        <img src="https://images.unsplash.com/photo-1503095396549-807759245b35?w=600&h=450&fit=crop" alt="Spectacle marionnettes">
+                        <span class="card-date">15/03</span>
+                        <span class="card-price">10€</span>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-status-row">
+                            <span class="status-badge published"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>Publié</span>
+                            <div class="manage-wrapper">
+                                <button class="btn-manage" onclick="toggleDropdown(this)">gérer<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg></button>
+                                <div class="dropdown-menu">
+                                    <a href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>Suivre mes inscrits</a>
+                                    <a href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Télécharger le relevé</a>
+                                    <a href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="9" y1="3" x2="9" y2="21"/></svg>Scanner les billets</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>Modifier l'évènement</a>
+                                    <button class="danger"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>Annuler l'évènement</button>
+                                </div>
+                            </div>
                         </div>
-                        <div class="meta-item">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
-                                <circle cx="12" cy="10" r="3"/>
-                            </svg>
-                            Saint-Max (54)
+                        <h3 class="card-title">Fêtons l'année du serpent avec un spectacle de marionnettes</h3>
+                        <div class="card-meta">
+                            <div class="meta-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Emilie B. chez THOMAS G.</div>
+                            <div class="meta-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Saint-Max (54)</div>
+                        </div>
+                        <div class="stats-bar">
+                            <div class="stat-item">
+                                <div class="stat-icon views"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></div>
+                                <div class="stat-content"><span class="stat-value">23</span><span class="stat-label">vues</span></div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-icon tickets"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"/></svg></div>
+                                <div class="stat-content"><span class="stat-value">8/15</span><span class="stat-label">places</span></div>
+                            </div>
+                        </div>
+                        <div class="card-actions">
+                            <a href="#" class="action-btn primary"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg>Créer mes visuels</a>
+                            <a href="#" class="action-btn secondary"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>Suivre mes inscrits</a>
                         </div>
                     </div>
+                </article>
 
-                    <div class="stats-bar">
-                        <div class="stat-item">
-                            <div class="stat-icon views">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
-                                    <circle cx="12" cy="12" r="3"/>
-                                </svg>
-                            </div>
-                            <div class="stat-content">
-                                <span class="stat-value">9</span>
-                                <span class="stat-label">vues</span>
+                <!-- Card 3 -->
+                <article class="event-card">
+                    <div class="card-image">
+                        <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=600&h=450&fit=crop" alt="Concert acoustique">
+                        <span class="card-date">24/01</span>
+                        <span class="card-price">12€</span>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-status-row">
+                            <span class="status-badge published"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>Publié</span>
+                            <div class="manage-wrapper">
+                                <button class="btn-manage" onclick="toggleDropdown(this)">gérer<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg></button>
+                                <div class="dropdown-menu">
+                                    <a href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>Suivre mes inscrits</a>
+                                    <a href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Télécharger le relevé</a>
+                                    <a href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="9" y1="3" x2="9" y2="21"/></svg>Scanner les billets</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>Modifier l'évènement</a>
+                                    <button class="danger"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>Annuler l'évènement</button>
+                                </div>
                             </div>
                         </div>
-                        <div class="stat-item">
-                            <div class="stat-icon tickets">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"/>
-                                </svg>
+                        <h3 class="card-title">Concert acoustique intimiste</h3>
+                        <div class="card-meta">
+                            <div class="meta-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Jean-Louis A. chez MARIE L.</div>
+                            <div class="meta-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Metz (57)</div>
+                        </div>
+                        <div class="stats-bar">
+                            <div class="stat-item">
+                                <div class="stat-icon views"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></div>
+                                <div class="stat-content"><span class="stat-value">45</span><span class="stat-label">vues</span></div>
                             </div>
-                            <div class="stat-content">
-                                <span class="stat-value">0/20</span>
-                                <span class="stat-label">places</span>
+                            <div class="stat-item">
+                                <div class="stat-icon tickets"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"/></svg></div>
+                                <div class="stat-content"><span class="stat-value">12/12</span><span class="stat-label">places</span></div>
                             </div>
+                        </div>
+                        <div class="card-actions">
+                            <a href="#" class="action-btn primary"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg>Créer mes visuels</a>
+                            <a href="#" class="action-btn secondary"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>Suivre mes inscrits</a>
                         </div>
                     </div>
+                </article>
 
-                    <div class="card-actions">
-                        <a href="#" class="action-btn primary">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
-                                <circle cx="9" cy="9" r="2"/>
-                                <path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/>
-                            </svg>
-                            Créer mes visuels
-                        </a>
-                        <a href="#" class="action-btn secondary">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
-                                <circle cx="9" cy="7" r="4"/>
-                                <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
-                                <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
-                            </svg>
-                            Suivre mes inscrits
-                        </a>
+                <!-- Card 4 -->
+                <article class="event-card">
+                    <div class="card-image">
+                        <img src="https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=600&h=450&fit=crop" alt="Lecture poétique">
+                        <span class="card-date">14/03</span>
+                        <span class="card-price">8€</span>
                     </div>
-                </div>
-            </article>
-
-            <!-- Card 2 - Marionnettes -->
-            <article class="event-card">
-                <div class="card-image">
-                    <img src="https://images.unsplash.com/photo-1503095396549-807759245b35?w=600&h=450&fit=crop" alt="Spectacle marionnettes">
-                    <span class="card-date">15/03</span>
-                    <span class="card-price">10€</span>
-                </div>
-                <div class="card-body">
-                    <div class="card-status-row">
-                        <span class="status-badge published">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
-                                <polyline points="20 6 9 17 4 12"></polyline>
-                            </svg>
-                            Publié
-                        </span>
-                        <div class="manage-wrapper">
-                            <button class="btn-manage" onclick="toggleDropdown(this)">
-                                gérer
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <polyline points="6 9 12 15 18 9"></polyline>
-                                </svg>
-                            </button>
-                            <div class="dropdown-menu">
-                                <a href="#">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
-                                        <circle cx="9" cy="7" r="4"/>
-                                        <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
-                                        <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
-                                    </svg>
-                                    Suivre mes inscrits
-                                </a>
-                                <a href="#">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-                                        <polyline points="14 2 14 8 20 8"/>
-                                    </svg>
-                                    Télécharger le relevé
-                                </a>
-                                <a href="#">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
-                                        <line x1="9" y1="3" x2="9" y2="21"/>
-                                    </svg>
-                                    Scanner les billets
-                                </a>
-                                <div class="dropdown-divider"></div>
-                                <a href="#">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
-                                        <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
-                                    </svg>
-                                    Modifier l'évènement
-                                </a>
-                                <button class="danger">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <circle cx="12" cy="12" r="10"/>
-                                        <line x1="15" y1="9" x2="9" y2="15"/>
-                                        <line x1="9" y1="9" x2="15" y2="15"/>
-                                    </svg>
-                                    Annuler l'évènement
-                                </button>
+                    <div class="card-body">
+                        <div class="card-status-row">
+                            <span class="status-badge published"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>Publié</span>
+                            <div class="manage-wrapper">
+                                <button class="btn-manage" onclick="toggleDropdown(this)">gérer<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg></button>
+                                <div class="dropdown-menu">
+                                    <a href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>Suivre mes inscrits</a>
+                                    <a href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Télécharger le relevé</a>
+                                    <a href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="9" y1="3" x2="9" y2="21"/></svg>Scanner les billets</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>Modifier l'évènement</a>
+                                    <button class="danger"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>Annuler l'évènement</button>
+                                </div>
                             </div>
+                        </div>
+                        <h3 class="card-title">Lecture poétique au coin du feu</h3>
+                        <div class="card-meta">
+                            <div class="meta-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Raphaelle V. chez PIERRE D.</div>
+                            <div class="meta-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Nancy (54)</div>
+                        </div>
+                        <div class="stats-bar">
+                            <div class="stat-item">
+                                <div class="stat-icon views"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></div>
+                                <div class="stat-content"><span class="stat-value">18</span><span class="stat-label">vues</span></div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-icon tickets"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"/></svg></div>
+                                <div class="stat-content"><span class="stat-value">5/10</span><span class="stat-label">places</span></div>
+                            </div>
+                        </div>
+                        <div class="card-actions">
+                            <a href="#" class="action-btn primary"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg>Créer mes visuels</a>
+                            <a href="#" class="action-btn secondary"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>Suivre mes inscrits</a>
                         </div>
                     </div>
-
-                    <h3 class="card-title">Fêtons l'année du serpent avec un spectacle de marionnettes</h3>
-
-                    <div class="card-meta">
-                        <div class="meta-item">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
-                                <circle cx="12" cy="7" r="4"/>
-                            </svg>
-                            Emilie B. chez THOMAS G.
-                        </div>
-                        <div class="meta-item">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
-                                <circle cx="12" cy="10" r="3"/>
-                            </svg>
-                            Saint-Max (54)
-                        </div>
-                    </div>
-
-                    <div class="stats-bar">
-                        <div class="stat-item">
-                            <div class="stat-icon views">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
-                                    <circle cx="12" cy="12" r="3"/>
-                                </svg>
-                            </div>
-                            <div class="stat-content">
-                                <span class="stat-value">23</span>
-                                <span class="stat-label">vues</span>
-                            </div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-icon tickets">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"/>
-                                </svg>
-                            </div>
-                            <div class="stat-content">
-                                <span class="stat-value">8/15</span>
-                                <span class="stat-label">places</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="card-actions">
-                        <a href="#" class="action-btn primary">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
-                                <circle cx="9" cy="9" r="2"/>
-                                <path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/>
-                            </svg>
-                            Créer mes visuels
-                        </a>
-                        <a href="#" class="action-btn secondary">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
-                                <circle cx="9" cy="7" r="4"/>
-                                <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
-                                <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
-                            </svg>
-                            Suivre mes inscrits
-                        </a>
-                    </div>
-                </div>
-            </article>
-
-            <!-- Card 3 - Concert -->
-            <article class="event-card">
-                <div class="card-image">
-                    <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=600&h=450&fit=crop" alt="Concert acoustique">
-                    <span class="card-date">24/01</span>
-                    <span class="card-price">12€</span>
-                </div>
-                <div class="card-body">
-                    <div class="card-status-row">
-                        <span class="status-badge published">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
-                                <polyline points="20 6 9 17 4 12"></polyline>
-                            </svg>
-                            Publié
-                        </span>
-                        <div class="manage-wrapper">
-                            <button class="btn-manage" onclick="toggleDropdown(this)">
-                                gérer
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <polyline points="6 9 12 15 18 9"></polyline>
-                                </svg>
-                            </button>
-                            <div class="dropdown-menu">
-                                <a href="#">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
-                                        <circle cx="9" cy="7" r="4"/>
-                                        <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
-                                        <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
-                                    </svg>
-                                    Suivre mes inscrits
-                                </a>
-                                <a href="#">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-                                        <polyline points="14 2 14 8 20 8"/>
-                                    </svg>
-                                    Télécharger le relevé
-                                </a>
-                                <a href="#">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
-                                        <line x1="9" y1="3" x2="9" y2="21"/>
-                                    </svg>
-                                    Scanner les billets
-                                </a>
-                                <div class="dropdown-divider"></div>
-                                <a href="#">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
-                                        <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
-                                    </svg>
-                                    Modifier l'évènement
-                                </a>
-                                <button class="danger">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <circle cx="12" cy="12" r="10"/>
-                                        <line x1="15" y1="9" x2="9" y2="15"/>
-                                        <line x1="9" y1="9" x2="15" y2="15"/>
-                                    </svg>
-                                    Annuler l'évènement
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <h3 class="card-title">Concert acoustique intimiste</h3>
-
-                    <div class="card-meta">
-                        <div class="meta-item">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
-                                <circle cx="12" cy="7" r="4"/>
-                            </svg>
-                            Jean-Louis A. chez MARIE L.
-                        </div>
-                        <div class="meta-item">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
-                                <circle cx="12" cy="10" r="3"/>
-                            </svg>
-                            Metz (57)
-                        </div>
-                    </div>
-
-                    <div class="stats-bar">
-                        <div class="stat-item">
-                            <div class="stat-icon views">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
-                                    <circle cx="12" cy="12" r="3"/>
-                                </svg>
-                            </div>
-                            <div class="stat-content">
-                                <span class="stat-value">45</span>
-                                <span class="stat-label">vues</span>
-                            </div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-icon tickets">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"/>
-                                </svg>
-                            </div>
-                            <div class="stat-content">
-                                <span class="stat-value">12/12</span>
-                                <span class="stat-label">places</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="card-actions">
-                        <a href="#" class="action-btn primary">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
-                                <circle cx="9" cy="9" r="2"/>
-                                <path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/>
-                            </svg>
-                            Créer mes visuels
-                        </a>
-                        <a href="#" class="action-btn secondary">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
-                                <circle cx="9" cy="7" r="4"/>
-                                <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
-                                <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
-                            </svg>
-                            Suivre mes inscrits
-                        </a>
-                    </div>
-                </div>
-            </article>
-
-            <!-- Card 4 - Lecture -->
-            <article class="event-card">
-                <div class="card-image">
-                    <img src="https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=600&h=450&fit=crop" alt="Lecture poétique">
-                    <span class="card-date">14/03</span>
-                    <span class="card-price">8€</span>
-                </div>
-                <div class="card-body">
-                    <div class="card-status-row">
-                        <span class="status-badge published">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
-                                <polyline points="20 6 9 17 4 12"></polyline>
-                            </svg>
-                            Publié
-                        </span>
-                        <div class="manage-wrapper">
-                            <button class="btn-manage" onclick="toggleDropdown(this)">
-                                gérer
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <polyline points="6 9 12 15 18 9"></polyline>
-                                </svg>
-                            </button>
-                            <div class="dropdown-menu">
-                                <a href="#">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
-                                        <circle cx="9" cy="7" r="4"/>
-                                        <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
-                                        <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
-                                    </svg>
-                                    Suivre mes inscrits
-                                </a>
-                                <a href="#">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-                                        <polyline points="14 2 14 8 20 8"/>
-                                    </svg>
-                                    Télécharger le relevé
-                                </a>
-                                <a href="#">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
-                                        <line x1="9" y1="3" x2="9" y2="21"/>
-                                    </svg>
-                                    Scanner les billets
-                                </a>
-                                <div class="dropdown-divider"></div>
-                                <a href="#">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
-                                        <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
-                                    </svg>
-                                    Modifier l'évènement
-                                </a>
-                                <button class="danger">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <circle cx="12" cy="12" r="10"/>
-                                        <line x1="15" y1="9" x2="9" y2="15"/>
-                                        <line x1="9" y1="9" x2="15" y2="15"/>
-                                    </svg>
-                                    Annuler l'évènement
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <h3 class="card-title">Lecture poétique au coin du feu</h3>
-
-                    <div class="card-meta">
-                        <div class="meta-item">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
-                                <circle cx="12" cy="7" r="4"/>
-                            </svg>
-                            Raphaelle V. chez PIERRE D.
-                        </div>
-                        <div class="meta-item">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
-                                <circle cx="12" cy="10" r="3"/>
-                            </svg>
-                            Nancy (54)
-                        </div>
-                    </div>
-
-                    <div class="stats-bar">
-                        <div class="stat-item">
-                            <div class="stat-icon views">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
-                                    <circle cx="12" cy="12" r="3"/>
-                                </svg>
-                            </div>
-                            <div class="stat-content">
-                                <span class="stat-value">18</span>
-                                <span class="stat-label">vues</span>
-                            </div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-icon tickets">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"/>
-                                </svg>
-                            </div>
-                            <div class="stat-content">
-                                <span class="stat-value">5/10</span>
-                                <span class="stat-label">places</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="card-actions">
-                        <a href="#" class="action-btn primary">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
-                                <circle cx="9" cy="9" r="2"/>
-                                <path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/>
-                            </svg>
-                            Créer mes visuels
-                        </a>
-                        <a href="#" class="action-btn secondary">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
-                                <circle cx="9" cy="7" r="4"/>
-                                <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
-                                <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
-                            </svg>
-                            Suivre mes inscrits
-                        </a>
-                    </div>
-                </div>
-            </article>
+                </article>
+            </div>
         </div>
+
+        <!-- ==================== PAGE: MESSAGES ==================== -->
+        <div id="page-messages" class="page">
+            <div class="page-header">
+                <h1 class="page-title">Messages</h1>
+                <p class="messages-intro">Toutes vos conversations et suggestions sont dans votre messagerie.</p>
+            </div>
+
+            <h2 class="section-title">Plus tôt</h2>
+            
+            <div class="messages-list">
+                <div class="message-item unread" onclick="showPage('conversation')">
+                    <div class="message-avatar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+                    <div class="message-content">
+                        <div class="message-header">
+                            <span class="message-name">Caroline C.</span>
+                            <span class="message-artist-name">« Contes des îles de l'Océan Indien »</span>
+                        </div>
+                        <div class="message-project">Spectacle de contes</div>
+                        <div class="message-location">📍 Paris 11e</div>
+                    </div>
+                    <div class="unread-dot"></div>
+                </div>
+
+                <div class="message-item" onclick="showPage('conversation')">
+                    <div class="message-avatar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+                    <div class="message-content">
+                        <div class="message-header">
+                            <span class="message-name">Jean-Louis A.</span>
+                            <span class="message-artist-name">« Chansons en vers et à l'endroit »</span>
+                        </div>
+                        <div class="message-project">Concert acoustique</div>
+                        <div class="message-location">📍 Metz</div>
+                    </div>
+                </div>
+
+                <div class="message-item" onclick="showPage('conversation')">
+                    <div class="message-avatar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+                    <div class="message-content">
+                        <div class="message-header">
+                            <span class="message-name">Emilie B.</span>
+                            <span class="message-artist-name">« Spectacle de marionnettes »</span>
+                        </div>
+                        <div class="message-project">Création de porte bonheur</div>
+                        <div class="message-location">📍 Nancy</div>
+                    </div>
+                </div>
+
+                <div class="message-item" onclick="showPage('conversation')">
+                    <div class="message-avatar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+                    <div class="message-content">
+                        <div class="message-header">
+                            <span class="message-name">Estelle D.</span>
+                            <span class="message-artist-name">« Concert pop/rock »</span>
+                        </div>
+                        <div class="message-project">Concert live</div>
+                        <div class="message-location">📍 Bar-le-Duc</div>
+                    </div>
+                </div>
+
+                <div class="message-item" onclick="showPage('conversation')">
+                    <div class="message-avatar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+                    <div class="message-content">
+                        <div class="message-header">
+                            <span class="message-name">Amélie A.</span>
+                            <span class="message-artist-name">« Nettoyage à sec uniquement ! »</span>
+                        </div>
+                        <div class="message-project">Comédie humoristique</div>
+                        <div class="message-location">📍 Paris 1er</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="help-section">
+                <p>Besoin d'aide ?</p>
+                <a href="#" class="btn-contact">Contactez-nous</a>
+            </div>
+        </div>
+
+        <!-- ==================== PAGE: CONVERSATION ==================== -->
+        <div id="page-conversation" class="page">
+            <div class="conversation-header">
+                <button class="btn-back" onclick="showPage('messages')">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="m15 18-6-6 6-6"/>
+                    </svg>
+                </button>
+                <a href="#" class="btn-create-event">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
+                        <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
+                    </svg>
+                    Créer notre évènement
+                </a>
+            </div>
+
+            <div class="conversation-contact">
+                <h1 class="contact-name">Caroline C.</h1>
+                <p class="contact-project">Contes des îles de l'Océan Indien et des Caraïbes</p>
+                <p class="contact-location">Paris 11e Arrondissement · <a href="#">Voir son projet</a></p>
+            </div>
+
+            <p class="conversation-notice">¤ Cet espace de discussion est mis à votre disposition pour échanger et clarifier les informations concernant vos évènements, notamment les dates et horaires. ¤</p>
+
+            <div class="messages-thread">
+                <div class="thread-message received">
+                    <p class="thread-sender">Les colocs R. <span>· mar. 11 novembre à 02:01</span></p>
+                    <div class="thread-bubble">
+                        Les colocs s'intéresse à votre proposition d'évènement !<br><br>
+                        ✓ <strong>Confirmez la date et l'heure</strong> pour ouvrir la billetterie et partager le lien de votre évènement.<br><br>
+                        💬 <strong>Besoin d'échanger ?</strong> Discutez ensemble avant de finaliser les détails.<br><br>
+                        📬 Ce message vous est envoyé par Hormur pour faciliter la réalisation de vos évènements.<br>
+                        À vous de jouer !
+                    </div>
+                </div>
+
+                <div class="thread-message received">
+                    <p class="thread-sender">Les colocs R. <span>· mar. 11 novembre à 02:03</span></p>
+                    <div class="thread-bubble">
+                        Bonsoir, merci pour votre propositions, auriez-vous une vidéo pour que je puisse la partager à mes colocataires s'il vous plaît ? (Je pense qu'une vidéo sur votre projet aiderait aussi pour la réservation des spectateurs). Merci par avance ! Martin
+                    </div>
+                </div>
+
+                <div class="thread-message sent">
+                    <p class="thread-sender">Caroline C. <span>· mar. 11 novembre à 16:15</span></p>
+                    <div class="thread-bubble">
+                        Bonjour, Merci pour votre intérêt. Je vous invite à visiter mon site Web, dans la section Galerie, vous verrez quelques et deux extraits vidéos <a href="#">https://lagazettedecaroline.fr/category/galerie/</a> Bien à vous, Caroline
+                    </div>
+                </div>
+            </div>
+
+            <div class="message-input-container">
+                <input type="text" class="message-input" placeholder="Écrivez quelque chose...">
+                <button class="btn-send">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="22" y1="2" x2="11" y2="13"/>
+                        <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
     </main>
 
     <script>
+        function showPage(pageId) {
+            // Hide all pages
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            
+            // Show selected page
+            document.getElementById('page-' + pageId).classList.add('active');
+            
+            // Update nav states
+            document.getElementById('nav-mon-espace').classList.remove('active');
+            document.getElementById('nav-messages').classList.remove('active');
+            document.getElementById('mobile-mon-espace').classList.remove('active');
+            document.getElementById('mobile-messages').classList.remove('active');
+            
+            if (pageId === 'mon-espace') {
+                document.getElementById('nav-mon-espace').classList.add('active');
+                document.getElementById('mobile-mon-espace').classList.add('active');
+            } else if (pageId === 'messages' || pageId === 'conversation') {
+                document.getElementById('nav-messages').classList.add('active');
+                document.getElementById('mobile-messages').classList.add('active');
+            }
+
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
+
         function toggleDropdown(btn) {
             const dropdown = btn.nextElementSibling;
             const isOpen = dropdown.classList.contains('show');
